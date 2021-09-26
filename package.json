@@ -1,0 +1,29 @@
+{
+  "name": "api-rest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --trace-warnings src/server.js",
+    "dev": "nodemon --trace-warnings src/server.js"
+  },
+  "repository": "git+https://github.com/May199/API-Rest.git",
+  "keywords": [],
+  "author": "Emanuelle Neves <emanuelle.neves@edu.unifor.br>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/May199/API-Rest/issues"
+  },
+  "homepage": "https://github.com/May199/API-Rest#readme",
+  "dependencies": {
+    "consign": "^0.1.6",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "random-id": "^1.0.4",
+    "swagger-ui-express": "^4.1.6"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.13"
+  }
+}
