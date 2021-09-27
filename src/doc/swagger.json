@@ -159,7 +159,7 @@
           }
         }
       },
-      "/alteringRecords/{nameUser}/{month}/{day}": {
+      "/alteringRecords/{nameUser}": {
         "put": {
           "summary": "Alterar Dia e Mes do usuário",
           "description": "alterar dados dos aniversariantes por nome",
