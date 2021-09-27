@@ -86,7 +86,6 @@ function ConsultDateBirthday(month = Birthday.month, day = Birthday.day){
     
     return listUsers;
 }
-// ####################### SEM ROTAS ################################
 // Consultar aniversariantes por mês.
 function ConsultBirthdayMonth(month = Birthday.month){
     const db = getDataBase();
@@ -107,14 +106,14 @@ function showUsers(order = User){
 
     const orderBy = order === 'month'
       ? db.sort((a, b) => {
-        const condition = a.month - b.month;
+        const dataInfo = a.month - b.month;
 
-        return condition;
+        return dataInfo;
       })
       : db.sort((a, b) => {
-        const condition = a.nameUser < b.nameUser ? -1 : 1;
+        const dataInfo = a.nameUser < b.nameUser ? -1 : 1;
 
-        return condition;
+        return dataInfo;
       });
   
     return orderBy;

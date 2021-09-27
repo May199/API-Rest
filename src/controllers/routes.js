@@ -26,7 +26,7 @@ routes.get('/consultDateBirthda/:month/:day', (req, res) => {
     } 
     catch (error) {
       if (error instanceof Error) {
-        return res.status(400).json({ message: error.message });
+        return res.status(400).json({ message: 'User not found!' });
       }
       return res.sendStatus(400);
     }
@@ -41,7 +41,7 @@ routes.get('/consultBirthdayMonth/:month', (req, res) => {
     } 
     catch (error) {
       if (error instanceof Error) {
-        return res.status(400).json({ message: error.message });
+        return res.status(400).json({ message: 'User not found'});
       }
       return res.sendStatus(400);
     }
