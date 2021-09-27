@@ -1,3 +1,4 @@
+const fs = require('fs');
 const randomId = require('random-id');
 const {
     User,
@@ -5,17 +6,16 @@ const {
     BirthdayUpdate
 } = require('../data/userData'); 
 
-
 function getDataBase(){
-    const file = filehandle.appendFile(`${__dirname}/db.json`, { encoding: 'utf-8' });
-    const dbObj = JSON.parse(file);
+    const file = fs.readFileSync(`${__dirname}/db.json`, {encoding:'utf8'});
+    const dbObj = JSON.parse(User[file]);
 
     return dbObj;
 }
 function saveData(user = User){
     const file = JSON.stringify(user, null, 2);
     
-    filehandle.appendFile(`${__dirname}/db.json`, file, { encoding: 'utf-8' });
+    fs.readFileSync(`${__dirname}/db.json`, file, {encoding:'utf8'});
 }
 function getID(){
     const len = 32;
@@ -26,14 +26,19 @@ function getID(){
 
 
 // Cadastrar pessoa na agenda de aniversariantes (nome, dia e mês do aniversário).
-function addRegister(nameUser = User.nameUser, day = User.day, month = User.month){
+function addRegister(user = User){
     const db = getDataBase();
-    const newUser = {id: getID(), nameUser, day, month}
+    const newUser = {id: getID(), user}
 
-    db.push(newUser);
-    saveData(db);
+    try{
+        db.push(newUser);
+        saveData(db);
+        return {message: 'User registered with success!'}
 
-    return {message: 'User registered with success!'}
+    }catch(e){
+        return res.status(400).json({message: 'User not registered!'});
+    }
+
 }
 // Excluir pessoa a partir do nome.
 function removeRegister(nameUser = User.nameUser){
@@ -67,11 +72,10 @@ function alteringRecords(nameUser = User.nameUser, month = BirthdayUpdate.month,
     }
 }
 
-// ####################### SEM ROTAS ################################
 // Consultar aniversariantes de uma data (dia e mês).
-function ConsultDateBirthday(day = Birthday.day, month = Birthday.month){
+function ConsultDateBirthday(month = Birthday.month, day = Birthday.day){
     const db = getDataBase();
-
+    
     if (!(month > 0 && month <= 12)){
         throw new Error('Entry of invalid month');
     } 
@@ -79,9 +83,10 @@ function ConsultDateBirthday(day = Birthday.day, month = Birthday.month){
         throw new Error('Entry of invalid day');
     } 
     const listUsers = db.filter((user) => user.day === day && user.month === month);
-
+    
     return listUsers;
 }
+// ####################### SEM ROTAS ################################
 // Consultar aniversariantes por mês.
 function ConsultBirthdayMonth(month = Birthday.month){
     const db = getDataBase();
@@ -96,23 +101,25 @@ function ConsultBirthdayMonth(month = Birthday.month){
 // Consultar aniversariantes pela letra inicial do nome.
 function ConsultBirthdayNamesLetter(letter){}
 // Mostrar toda a agenda ordenada pelo nome.
-function ShowSortedByName(nameUser = User.nameUser){
-    const db = getDataBase();
-
-    db.sort((a, b) => {
-        const order = a.nameUser < b.nameUser ? -1 : 1;
-        return order;
-    });
-}
 // Mostrar toda a agenda ordenada por mês.
-function ShowSortedByMonth(month = Birthday.month){
+function showUsers(order = User){
     const db = getDataBase();
 
-    db.sort((a, b) => {
-        const order = a.month < b.month ? -1 : 1;
-        return order;
-    });
+    const orderBy = order === 'month'
+      ? db.sort((a, b) => {
+        const condition = a.month - b.month;
+
+        return condition;
+      })
+      : db.sort((a, b) => {
+        const condition = a.nameUser < b.nameUser ? -1 : 1;
+
+        return condition;
+      });
+  
+    return orderBy;
 }
+
 
 module.exports = {
     addRegister,
@@ -121,6 +128,5 @@ module.exports = {
     ConsultDateBirthday,
     ConsultBirthdayMonth,
     ConsultBirthdayNamesLetter,
-    ShowSortedByName,
-    ShowSortedByMonth
+    showUsers
 }

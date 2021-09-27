@@ -1,5 +1,5 @@
 {
-    "openapi": "3.0.0",
+    "openapi": "1.0.0",
     "info": {
       "title": "API Rest - ",
       "description": "",
@@ -62,7 +62,7 @@
           }
         }
       },
-      "/register/{nameUser}/{day}/{month}": {
+      "/register": {
         "post": {
           "summary": "Registrar Usuários",
           "description": "registrar novos usuários",
@@ -238,7 +238,7 @@
         }
       },
       
-      "/index/{mes}/{day}": {
+      "/consultDateBirthda/{month}/{day}": {
         "get": {
           "summary": "Busca de usuário a partir do mes e dia",
           "description": "",
@@ -249,19 +249,19 @@
             {
               "name": "month",
               "in": "path",
-              "description": "Mes do usuario para busca",
+              "description": "",
               "required": true
             },
             {
               "name": "day",
               "in": "path",
-              "description": "Dia do usuario para busca",
+              "description": "",
               "required": true
             }
           ],
           "responses": {
             "200": {
-              "description": "Usuários encontrados",
+              "description": "Usuários encontrados no banco de dados",
               "content": {
                 "application/json": {
                   "schema": {
@@ -279,7 +279,7 @@
               }
             },
             "400": {
-              "description": "Dia ou mês no formato errado!",
+              "description": "Data no formato errado!",
               "content": {
                 "application/json": {
                   "schema": {
@@ -287,7 +287,7 @@
                     "properties": {
                       "message": {
                         "type": "string",
-                        "example": "Mês/Dia inválido!"
+                        "example": "90/12"
                       }
                     }
                   }
@@ -297,10 +297,10 @@
           }
         }
       },
-      "/index/{mes}": {
+      "/consultBirthdayMonth/{month}": {
         "get": {
           "summary": "Busca users por mes",
-          "description": "Esta rota recebe como parâmetro o mes selecionado e retorna os aniversariantes desse mes.",
+          "description": "",
           "tags": [
             "User"
           ],
@@ -308,13 +308,13 @@
             {
               "in": "path",
               "name": "month",
-              "description": "Mes do usuario para a busca.",
+              "description": "",
               "required": true
             }
           ],
           "responses": {
             "200": {
-              "description": "users encontrados.",
+              "description": "users encontrados no banco de dados.",
               "content": {
                 "application/json": {
                   "schema": {
@@ -332,7 +332,7 @@
               }
             },
             "400": {
-              "description": "Mes com formato errado",
+              "description": "Mês em formato errado",
               "content": {
                 "application/json": {
                   "schema": {
@@ -340,60 +340,7 @@
                     "properties": {
                       "message": {
                         "type": "string",
-                        "example": "Mes inválido."
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "/index": {
-        "get": {
-          "summary": "Busca usuário por letra inicial ou name",
-          "description": "Rota responsável por recuperar os cadastros pertinentes aos parâmetros da busca",
-          "tags": [
-            "User"
-          ],
-          "parameters": [
-            {
-              "name": "letra",
-              "in": "query",
-              "description": "name do usuário para busca",
-              "required": true
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "Usuários encontrados",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "$ref": "#/components/examples/Users"
-                    }
-                  },
-                  "examples": {
-                    "users": {
-                      "$ref": "#/components/examples/Users"
-                    }
-                  }
-                }
-              }
-            },
-            "400": {
-              "description": "Letra não informada!",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "message": {
-                        "type": "string",
-                        "example": "A letra ou name não foram informados!"
+                        "example": "13"
                       }
                     }
                   }
