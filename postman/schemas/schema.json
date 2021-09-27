@@ -1,0 +1,472 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "API Rest - ",
+      "description": "",
+      "version": "1.0.0",
+      "contact": {
+        "name": "Emanuelle Neves",
+        "email": "emanuelle.neves@edu.unifor.br"
+      }
+    },
+    "servers": [
+      {
+        "url": "",
+        "description": ""
+      },
+      {
+        "url": "http://localhost:3001/",
+        "description": "URL localhost."
+      }
+    ],
+    "paths": {
+      "/": {
+        "get": {
+          "summary": "Retorna todos os usuários ordenados",
+          "description": "",
+          "tags": [
+            "user"
+          ],
+          "parameters": [
+            {
+              "name": "order",
+              "in": "query",
+              "description": "",
+              "required": false
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "users": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/user"
+                        }
+                      }
+                    }
+                  },
+                  "examples": {
+                    "users": {
+                      "$ref": "#/components/examples/users"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/register": {
+        "post": {
+          "summary": "",
+          "description": "",
+          "tags": [
+            "User"
+          ],
+          "requestBody": {
+            "$ref": "#/components/requestBodies/UserNotID"
+          },
+          "responses": {
+            "201": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "message": {
+                        "type": "string",
+                        "example": ""
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/excluir/{name}": {
+        "delete": {
+          "summary": "Remover Usuário Por Nome",
+          "description": "Esta rota recebe como parâmetro o nome do usuário e remove o primeiro registro que bate com o nome passado.",
+          "tags": [
+            "User"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "name",
+              "description": "name do usuário a ser removido.",
+              "schema": {
+                "type": "string"
+              },
+              "example": "Jacson",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "message": {
+                        "type": "string",
+                        "example": "User removed with success!"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "message": {
+                        "type": "string",
+                        "example": "User not removed!"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/alterar/{name}": {
+        "put": {
+          "summary": "Alterar Dia e Mes do usuário por name",
+          "description": "Esta rota recebe como parâmetro o name do usuário e altera o dia e o mes desse usuario passado no corpo da requisicao.",
+          "tags": [
+            "User"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "name",
+              "description": "name do usuário a ser alterado.",
+              "schema": {
+                "type": "object"
+              },
+              "example": "Jonas",
+              "required": true
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "summary": "Dia e Mes a serem alterados.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "day": {
+                      "type": "integer"
+                    },
+                    "month": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "example": {
+                  "day": 8,
+                  "month": 5
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Um objeto com a mensagem de sucesso.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "message": {
+                        "type": "string",
+                        "example": "Usuário alterado!"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Um objeto com a mensagem de erro!",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "message": {
+                        "type": "string",
+                        "example": "Usuário não alterado!"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/index/{mes}/{day}": {
+        "get": {
+          "summary": "Busca de usuário a partir do mes e dia",
+          "description": "",
+          "tags": [
+            "User"
+          ],
+          "parameters": [
+            {
+              "name": "month",
+              "in": "path",
+              "description": "Mes do usuario para busca",
+              "required": true
+            },
+            {
+              "name": "day",
+              "in": "path",
+              "description": "Dia do usuario para busca",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Usuários encontrados",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/User"
+                    }
+                  },
+                  "examples": {
+                    "users": {
+                      "$ref": "#/components/examples/Users"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Dia ou mês no formato errado!",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "message": {
+                        "type": "string",
+                        "example": "Mês/Dia inválido!"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/index/{mes}": {
+        "get": {
+          "summary": "Busca users por mes",
+          "description": "Esta rota recebe como parâmetro o mes selecionado e retorna os aniversariantes desse mes.",
+          "tags": [
+            "User"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "month",
+              "description": "Mes do usuario para a busca.",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "users encontrados.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/User"
+                    }
+                  },
+                  "examples": {
+                    "users": {
+                      "$ref": "#/components/examples/Users"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Mes com formato errado",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "message": {
+                        "type": "string",
+                        "example": "Mes inválido."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/index": {
+        "get": {
+          "summary": "Busca usuário por letra inicial ou name",
+          "description": "Rota responsável por recuperar os cadastros pertinentes aos parâmetros da busca",
+          "tags": [
+            "User"
+          ],
+          "parameters": [
+            {
+              "name": "letra",
+              "in": "query",
+              "description": "name do usuário para busca",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Usuários encontrados",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "$ref": "#/components/examples/Users"
+                    }
+                  },
+                  "examples": {
+                    "users": {
+                      "$ref": "#/components/examples/Users"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Letra não informada!",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "message": {
+                        "type": "string",
+                        "example": "A letra ou name não foram informados!"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "UserNotID": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "month": {
+              "type": "integer"
+            },
+            "dia": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "name",
+            "month",
+            "day"
+          ]
+        },
+        "User": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            },
+            "month": {
+              "type": "integer"
+            },
+            "day": {
+              "type": "integer"
+            }
+          }
+        }
+      },
+      "examples": {
+        "UserNotID": {
+          "summary": "Examples Users",
+          "value": {
+            "id": "lv6w0azlk12",
+            "name": "Emanuelle Neves",
+            "month": 7,
+            "day": 19
+          }
+        },
+        "User": {
+          "summary": "Examples Users",
+          "value": {
+            "id": "lv6w123lkyq",
+            "name": "Maria Eduarda",
+            "month": 4,
+            "day": 2
+          }
+        }
+      },
+      "requestBodies": {
+        "UserNotID": {
+          "description": "Objeto JSON contendo dados de um usuário",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserNotID"
+              },
+              "examples": {
+                "User": {
+                  "$ref": "#/components/examples/UserNotID"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }

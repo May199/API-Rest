@@ -1,0 +1,671 @@
+{
+    "info": {
+        "_postman_id": "fcf9de80-0aa4-48cf-a20b-9b97ff56cd9d",
+        "name": "API Rest - ",
+        "description": "Contact Support:\n Name: Emanuelle Neves\n Email: emanuelle.neves@edu.unifor.br",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "index",
+            "item": [
+                {
+                    "name": "{mes}",
+                    "item": [
+                        {
+                            "name": "Busca users por mes",
+                            "id": "49104f39-7e5c-460b-8f28-322f516ca07a",
+                            "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{baseUrl}}/index/:mes",
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "path": [
+                                        "index",
+                                        ":mes"
+                                    ],
+                                    "variable": [
+                                        {
+                                            "id": "8b0bc299-10a0-48bf-97a7-f6cfea99d82d",
+                                            "key": "month",
+                                            "value": "",
+                                            "description": "(Required) Mes do usuario para a busca."
+                                        }
+                                    ]
+                                },
+                                "description": "Esta rota recebe como parâmetro o mes selecionado e retorna os aniversariantes desse mes."
+                            },
+                            "response": [
+                                {
+                                    "id": "fc6cf6f9-ecf7-4e59-9fb3-f398f0f7f408",
+                                    "name": "users encontrados.",
+                                    "originalRequest": {
+                                        "method": "GET",
+                                        "header": [],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/index/:mes",
+                                            "host": [
+                                                "{{baseUrl}}"
+                                            ],
+                                            "path": [
+                                                "index",
+                                                ":mes"
+                                            ],
+                                            "variable": [
+                                                {
+                                                    "key": "mes"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "status": "OK",
+                                    "code": 200,
+                                    "_postman_previewlanguage": "json",
+                                    "header": [
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                        }
+                                    ],
+                                    "cookie": [],
+                                    "responseTime": null,
+                                    "body": "\"reference #/components/examples/Users not found in the given specification\""
+                                },
+                                {
+                                    "id": "3a6d649d-dfe8-4679-86de-4dd9c716c44e",
+                                    "name": "Mes com formato errado",
+                                    "originalRequest": {
+                                        "method": "GET",
+                                        "header": [],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/index/:mes",
+                                            "host": [
+                                                "{{baseUrl}}"
+                                            ],
+                                            "path": [
+                                                "index",
+                                                ":mes"
+                                            ],
+                                            "variable": [
+                                                {
+                                                    "key": "mes"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "status": "Bad Request",
+                                    "code": 400,
+                                    "_postman_previewlanguage": "json",
+                                    "header": [
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                        }
+                                    ],
+                                    "cookie": [],
+                                    "responseTime": null,
+                                    "body": "{\n \"message\": \"Mes inválido.\"\n}"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Busca de usuário a partir do mes e dia",
+                            "id": "9c1aaa8f-592f-48b2-8791-da41a2b198c6",
+                            "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{baseUrl}}/index/:mes/:day",
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "path": [
+                                        "index",
+                                        ":mes",
+                                        ":day"
+                                    ],
+                                    "variable": [
+                                        {
+                                            "id": "2e013fbd-c2d4-4771-b28a-0db1787f924b",
+                                            "key": "month",
+                                            "value": "",
+                                            "description": "(Required) Mes do usuario para busca"
+                                        },
+                                        {
+                                            "id": "5e53b98a-92a2-4312-90f0-c36caa57c0f9",
+                                            "key": "day",
+                                            "value": "",
+                                            "description": "(Required) Dia do usuario para busca"
+                                        }
+                                    ]
+                                }
+                            },
+                            "response": [
+                                {
+                                    "id": "2336b516-1893-4b2a-ac9f-c339b2e16dd0",
+                                    "name": "Usuários encontrados",
+                                    "originalRequest": {
+                                        "method": "GET",
+                                        "header": [],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/index/:mes/:day",
+                                            "host": [
+                                                "{{baseUrl}}"
+                                            ],
+                                            "path": [
+                                                "index",
+                                                ":mes",
+                                                ":day"
+                                            ],
+                                            "variable": [
+                                                {
+                                                    "key": "mes"
+                                                },
+                                                {
+                                                    "key": "day"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "status": "OK",
+                                    "code": 200,
+                                    "_postman_previewlanguage": "json",
+                                    "header": [
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                        }
+                                    ],
+                                    "cookie": [],
+                                    "responseTime": null,
+                                    "body": "\"reference #/components/examples/Users not found in the given specification\""
+                                },
+                                {
+                                    "id": "60225b7e-ca86-4299-9311-f608d03b158f",
+                                    "name": "Dia ou mês no formato errado!",
+                                    "originalRequest": {
+                                        "method": "GET",
+                                        "header": [],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/index/:mes/:day",
+                                            "host": [
+                                                "{{baseUrl}}"
+                                            ],
+                                            "path": [
+                                                "index",
+                                                ":mes",
+                                                ":day"
+                                            ],
+                                            "variable": [
+                                                {
+                                                    "key": "mes"
+                                                },
+                                                {
+                                                    "key": "day"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "status": "Bad Request",
+                                    "code": 400,
+                                    "_postman_previewlanguage": "json",
+                                    "header": [
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                        }
+                                    ],
+                                    "cookie": [],
+                                    "responseTime": null,
+                                    "body": "{\n \"message\": \"Mês/Dia inválido!\"\n}"
+                                }
+                            ]
+                        }
+                    ],
+                    "id": "03cfd59b-97dd-48a3-b301-b25ad0022155"
+                },
+                {
+                    "name": "Busca usuário por letra inicial ou name",
+                    "id": "fdeafde8-3bb5-4b14-9d76-2508e503ec76",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/index?letra=",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "index"
+                            ],
+                            "query": [
+                                {
+                                    "description": "(Required) name do usuário para busca",
+                                    "key": "letra",
+                                    "value": ""
+                                }
+                            ]
+                        },
+                        "description": "Rota responsável por recuperar os cadastros pertinentes aos parâmetros da busca"
+                    },
+                    "response": [
+                        {
+                            "id": "556ae7c5-a9b9-4c7c-8b36-8879ba46a4bb",
+                            "name": "Usuários encontrados",
+                            "originalRequest": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{baseUrl}}/index?letra=",
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "path": [
+                                        "index"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "letra",
+                                            "value": ""
+                                        }
+                                    ]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "cookie": [],
+                            "responseTime": null,
+                            "body": "\"reference #/components/examples/Users not found in the given specification\""
+                        },
+                        {
+                            "id": "ec1c464c-3fc1-4f11-9177-7f9b56ecc84d",
+                            "name": "Letra não informada!",
+                            "originalRequest": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{baseUrl}}/index?letra=",
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "path": [
+                                        "index"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "letra",
+                                            "value": ""
+                                        }
+                                    ]
+                                }
+                            },
+                            "status": "Bad Request",
+                            "code": 400,
+                            "_postman_previewlanguage": "json",
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "cookie": [],
+                            "responseTime": null,
+                            "body": "{\n \"message\": \"A letra ou name não foram informados!\"\n}"
+                        }
+                    ]
+                }
+            ],
+            "id": "9434db82-87dc-4140-80c2-923ce6a32838"
+        },
+        {
+            "name": "Retorna todos os usuários ordenados",
+            "id": "ff53e8ec-dd61-4168-bbd2-fe72d87c5f09",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{baseUrl}}/?order=",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        ""
+                    ],
+                    "query": [
+                        {
+                            "key": "order",
+                            "value": ""
+                        }
+                    ]
+                }
+            },
+            "response": [
+                {
+                    "id": "934ed452-78a5-43a9-88e1-abab61bc1c75",
+                    "name": "response",
+                    "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/?order=",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                ""
+                            ],
+                            "query": [
+                                {
+                                    "key": "order",
+                                    "value": ""
+                                }
+                            ]
+                        }
+                    },
+                    "status": "OK",
+                    "code": 200,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "\"reference #/components/examples/users not found in the given specification\""
+                }
+            ]
+        },
+        {
+            "name": "/register",
+            "id": "1b7a5667-b816-4680-a1c3-b9889b716f1e",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"id\": \"lv6w0azlk12\",\n    \"name\": \"Emanuelle Neves\",\n    \"month\": 7,\n    \"day\": 19\n}"
+                },
+                "url": {
+                    "raw": "{{baseUrl}}/register",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "register"
+                    ]
+                }
+            },
+            "response": [
+                {
+                    "id": "52ed8999-0a9b-484e-9f26-8a6055f053b8",
+                    "name": "response",
+                    "originalRequest": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/register",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "register"
+                            ]
+                        }
+                    },
+                    "status": "Created",
+                    "code": 201,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "{\n \"message\": \"\"\n}"
+                }
+            ]
+        },
+        {
+            "name": "Remover Usuário Por Nome",
+            "id": "03988a9b-08fa-439e-a127-832afe74747d",
+            "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                    "raw": "{{baseUrl}}/excluir/:name",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "excluir",
+                        ":name"
+                    ],
+                    "variable": [
+                        {
+                            "id": "55476b27-837d-4b4b-944d-5abdf217074a",
+                            "key": "name",
+                            "value": "Jacson",
+                            "description": "(Required) name do usuário a ser removido."
+                        }
+                    ]
+                },
+                "description": "Esta rota recebe como parâmetro o nome do usuário e remove o primeiro registro que bate com o nome passado."
+            },
+            "response": [
+                {
+                    "id": "97acc417-5474-4e4d-a05e-9d4886183847",
+                    "name": "response",
+                    "originalRequest": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/excluir/:name",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "excluir",
+                                ":name"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "name"
+                                }
+                            ]
+                        }
+                    },
+                    "status": "OK",
+                    "code": 200,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "{\n \"message\": \"User removed with success!\"\n}"
+                },
+                {
+                    "id": "4739d7e3-2483-4774-a5fc-4a05331e9318",
+                    "name": "response",
+                    "originalRequest": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/excluir/:name",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "excluir",
+                                ":name"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "name"
+                                }
+                            ]
+                        }
+                    },
+                    "status": "Bad Request",
+                    "code": 400,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "{\n \"message\": \"User not removed!\"\n}"
+                }
+            ]
+        },
+        {
+            "name": "Alterar Dia e Mes do usuário por name",
+            "id": "cac43e81-b17f-4c90-97e2-adb200dcc409",
+            "request": {
+                "method": "PUT",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"day\": 8,\n    \"month\": 5\n}"
+                },
+                "url": {
+                    "raw": "{{baseUrl}}/alterar/:name",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "alterar",
+                        ":name"
+                    ],
+                    "variable": [
+                        {
+                            "id": "04f0aadf-2bb0-439c-8733-8838eea40c93",
+                            "key": "name",
+                            "value": "",
+                            "description": "(Required) name do usuário a ser alterado."
+                        }
+                    ]
+                },
+                "description": "Esta rota recebe como parâmetro o name do usuário e altera o dia e o mes desse usuario passado no corpo da requisicao."
+            },
+            "response": [
+                {
+                    "id": "5ed7a412-08d4-4ef4-bd0d-2a330615abe6",
+                    "name": "Um objeto com a mensagem de sucesso.",
+                    "originalRequest": {
+                        "method": "PUT",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"day\": 8,\n    \"month\": 5\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/alterar/:name",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "alterar",
+                                ":name"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "name"
+                                }
+                            ]
+                        }
+                    },
+                    "status": "OK",
+                    "code": 200,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "{\n \"message\": \"Usuário alterado!\"\n}"
+                },
+                {
+                    "id": "2501a76a-2386-494a-ad2f-59d0f765de0b",
+                    "name": "Um objeto com a mensagem de erro!",
+                    "originalRequest": {
+                        "method": "PUT",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"day\": 8,\n    \"month\": 5\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/alterar/:name",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "alterar",
+                                ":name"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "name"
+                                }
+                            ]
+                        }
+                    },
+                    "status": "Bad Request",
+                    "code": 400,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "cookie": [],
+                    "responseTime": null,
+                    "body": "{\n \"message\": \"Usuário não alterado!\"\n}"
+                }
+            ]
+        }
+    ],
+    "variable": [
+        {
+            "id": "f1006e53-0813-4b16-bb08-0eae63d2db35",
+            "key": "baseUrl",
+            "value": "",
+            "type": "string"
+        }
+    ]
+}
