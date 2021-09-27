@@ -1,6 +1,6 @@
 <h1 align="center"> API REST - Node.Js </h1>
 
-## Atividade desenvolvida na Universidade de Fortaleza(UNIFOR)
+<h1 align="center"> Atividade desenvolvida na Universidade de Fortaleza(UNIFOR) </h1>
 
 ### Requisitos Funcionais
 
