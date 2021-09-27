@@ -22,7 +22,7 @@
     "paths": {
       "/": {
         "get": {
-          "summary": "Retorna todos os usuários ordenados",
+          "summary": "",
           "description": "",
           "tags": [
             "user"
@@ -62,10 +62,10 @@
           }
         }
       },
-      "/register": {
+      "/register/{nameUser}/{day}/{month}": {
         "post": {
-          "summary": "",
-          "description": "",
+          "summary": "Registrar Usuários",
+          "description": "registrar novos usuários",
           "tags": [
             "User"
           ],
@@ -92,10 +92,10 @@
           }
         }
       },
-      "/excluir/{name}": {
+      "/removeRegister/{nameUser}": {
         "delete": {
-          "summary": "Remover Usuário Por Nome",
-          "description": "Esta rota recebe como parâmetro o nome do usuário e remove o primeiro registro que bate com o nome passado.",
+          "summary": "Remover Usuário",
+          "description": "Remover usuários pelo nome",
           "tags": [
             "User"
           ],
@@ -147,10 +147,10 @@
           }
         }
       },
-      "/alterar/{name}": {
+      "/alteringRecords/{nameUser}/{month}/{day}": {
         "put": {
-          "summary": "Alterar Dia e Mes do usuário por name",
-          "description": "Esta rota recebe como parâmetro o name do usuário e altera o dia e o mes desse usuario passado no corpo da requisicao.",
+          "summary": "Alterar Dia e Mes do usuário",
+          "description": "alterar dados dos aniversariantes por nome",
           "tags": [
             "User"
           ],
@@ -225,6 +225,7 @@
           }
         }
       },
+      
       "/index/{mes}/{day}": {
         "get": {
           "summary": "Busca de usuário a partir do mes e dia",

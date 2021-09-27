@@ -1,6 +1,5 @@
 const express= require('express');
 const routes = express.Router();
-
 const {
     addRegister,
     removeRegister,
@@ -11,28 +10,19 @@ const {
     ShowSortedByName,
     ShowSortedByMonth
 } = require('../database/index');
-const {
-    User,
-    Birthday,
-    BirthdayUpdate
-} = require('../data/userData'); 
 
 
-// Rotas GET
 routes.get('/', (req, res) => {
     return res.send('OK');
 });
 
-// Rotas POST
-routes.post('/register', (req, res) => {
+routes.post('/register/:nameUser/:day/:month', (req, res) => {
     const { name, month, day } = req.body;
     // dados dos usuários a ser registrado. 
     const data = addRegister({name, month, day});
 
-    return res.status(201).json(data);
+    return res.status(201).json({message: 'User registered with success!'}, data);
 });
-
-// Demais Funções
 routes.delete('/removeRegister/:nameUser', (req, res) => {
     const {nameUser} = req.params;
 
@@ -43,10 +33,27 @@ routes.delete('/removeRegister/:nameUser', (req, res) => {
     }
     catch(error){
         if(error instanceof Error){
-            return res.status(400).json({message: error.message});
+            return res.status(400).json({message: 'Unable to remove user'});
         }
     }
     return res.sendStatus(400);
+});
+
+routes.put('/alteringRecords/:nameUser/:month/:day', (req, res) => {
+    const {nameUser} = req.params;
+    const {month, day} = req.body;
+
+    try {
+        const message = alteringRecords(nameUser, month, day);
+        
+        return res.json(message);
+    } 
+    catch (error) {
+        if (error instanceof Error) {
+            return res.status(400).json({ message: 'Change of user registration' });
+        }
+        return res.status(400).json({ message: 'Change of user registration' });
+    }
 });
 
 module.exports = routes;
