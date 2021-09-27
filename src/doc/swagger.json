@@ -1,7 +1,7 @@
 {
     "openapi": "1.0.0",
     "info": {
-      "title": "API Rest - ",
+      "title": "API REST - Node.Js ",
       "description": "",
       "version": "1.0.0",
       "contact": {
@@ -23,7 +23,7 @@
       "/": {
         "get": {
           "summary": "",
-          "description": "",
+          "description": "rota primária",
           "tags": [
             "user"
           ],
@@ -73,7 +73,7 @@
             {
               "in": "path",
               "name": "name",
-              "description": "name do usuário a ser removido.",
+              "description": "nome do usuário a ser removido.",
               "schema": {
                 "type": "string"
               },
@@ -86,7 +86,7 @@
           },
           "responses": {
             "201": {
-              "description": "",
+              "description": "code para sucesso no registro",
               "content": {
                 "application/json": {
                   "schema": {
@@ -94,7 +94,7 @@
                     "properties": {
                       "message": {
                         "type": "string",
-                        "example": ""
+                        "example": "User registered with success!"
                       }
                     }
                   }
@@ -115,7 +115,7 @@
             {
               "in": "path",
               "name": "name",
-              "description": "name do usuário a ser removido.",
+              "description": "nome do usuário a ser removido.",
               "schema": {
                 "type": "string"
               },
@@ -133,7 +133,7 @@
                     "properties": {
                       "message": {
                         "type": "string",
-                        "example": "User removed with success!"
+                        "example": ""
                       }
                     }
                   }
@@ -149,7 +149,7 @@
                     "properties": {
                       "message": {
                         "type": "string",
-                        "example": "User not removed!"
+                        "example": ""
                       }
                     }
                   }
@@ -170,11 +170,11 @@
             {
               "in": "path",
               "name": "name",
-              "description": "name do usuário a ser alterado.",
+              "description": "nome do usuário a ser alterado.",
               "schema": {
                 "type": "object"
               },
-              "example": "Jonas",
+              "example": "User Example",
               "required": true
             }
           ],
