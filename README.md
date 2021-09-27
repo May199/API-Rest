@@ -9,13 +9,20 @@
 - [x] Alterar dia ou mês a partir do nome.
 - [x] Consultar aniversariantes de uma data (dia e mês).
 - [x] Consultar aniversariantes por mês.
-- [ ] Consultar aniversariantes pela letra inicial do nome.
 - [x] Mostrar toda a agenda ordenada pelo nome.
 - [x] Mostrar toda a agenda ordenada por mês.
+- [ ] Consultar aniversariantes pela letra inicial do nome.
 
+### Descrição
+
+> As rotas da API foram testadas pela a plataforma Postman onde podemos realizar todos os requisitos funcionais exceto pela consulta por letra na qual não foi possível concluir a tempo. A linguagem TypeScripts foi definida afim de estudo da linguagem e por ser fortemente tipada o que nesta atividade seria melhor executada do que em JavaScript. 
+
+### Aplicação no Heroku
+
+> https://
 #### Utilizando o propt de comando ou o terminal VS code, faça: 
-    $ yarn install
-    $ yarn dev / yarn start
+    $ yarn install / npm install --
+    $ yarn dev / yarn start / npm dev / npm start --
 
 ### REFERÊNCIAS
 

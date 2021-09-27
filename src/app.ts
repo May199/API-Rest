@@ -1,16 +1,14 @@
 /* eslint-disable linebreak-style */
-const express = require('express');
-const cors = require('cors');
-const consign = require('consign');
-const swagger = require('swagger-ui-express');
-const routes = require('./controllers/routes');
-const DOC = require('./doc/swagger.json');
+/* eslint-disable object-curly-spacing */
+/* eslint-disable comma-dangle */
+/* eslint-disable import/order */
+import express from 'express';
+import cors from 'cors';
+import swagger from 'swagger-ui-express';
+import routes from './controllers/routes';
+import DOC from './doc/swagger.json';
 
 const app = express();
-
-consign()
-  .include('controllers')
-  .into('app');
 
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));

@@ -3,7 +3,7 @@
 /* eslint-disable import/named */
 
 import express, { Request, Response } from 'express';
-import { User, BirthdayUpdate } from '../data/userData';
+import { BirthdayUpdate } from '../data/userData';
 
 const {
   addRegister,
@@ -12,6 +12,7 @@ const {
   ConsultDateBirthday,
   ConsultBirthdayMonth,
   showUsersName,
+  showUsersMonth,
 } = require('../database/database');
 
 const routes = express.Router();
@@ -20,9 +21,10 @@ const routes = express.Router();
 routes.get('/', (req: Request, res: Response) => {
   const { order } = req.query;
 
-  const listByUsers = showUsersName(order as string);
+  const listByName = showUsersName(order as String);
+  const listByMonth = showUsersMonth(order as String);
 
-  return res.status(200).json({ message: 'List by users: ', listByUsers });
+  return res.status(200).json({ message: 'List by Name and Month: ', listByName, listByMonth });
 });
 
 routes.get('/consultDateBirthda/:month/:day', (req: Request, res: Response) => {
@@ -52,8 +54,8 @@ routes.get('/consultBirthdayMonth/:month', (req: Request, res: Response) => {
 });
 
 // ########### Outras Rotas ###########
-routes.post('/register', (req: Request, res: Response) => {
-  const { nameUser, month, day }: User = req.body;
+routes.post('/register/:nameUser/:month/:day', (req: Request, res: Response) => {
+  const { nameUser, month, day } = req.params;
   // dados dos usuários a ser registrado.
   const data = addRegister({ nameUser, month, day });
 
@@ -76,6 +78,7 @@ routes.delete('/removeRegister/:nameUser', (req: Request, res: Response) => {
 
 routes.put('/alteringRecords/:nameUser', (req: Request, res: Response) => {
   const { nameUser } = req.params;
+  // Dados do usuário a serem atualizados
   const update: BirthdayUpdate = {
     month: req.body.month,
     day: req.body.day,
@@ -83,11 +86,12 @@ routes.put('/alteringRecords/:nameUser', (req: Request, res: Response) => {
 
   try {
     const data = alteringRecords(nameUser, update);
-    return res.json(data);
+    return res.status(200).json({ message: 'User changed!: ', data });
   } catch (error) {
     if (error instanceof Error) {
       return res.status(400).json({ message: 'User not changed!' });
     }
   }
 });
+
 export default routes;

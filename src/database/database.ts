@@ -2,8 +2,9 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable space-before-blocks */
 import fs from 'fs';
-import randomId from 'random-id';
 import { User, Birthday, BirthdayUpdate } from '../data/userData';
+
+const randomId = require('random-id');
 
 function getDataBase(){
   const file = fs.readFileSync(`${__dirname}/db.json`, { encoding: 'utf-8' });
@@ -42,13 +43,13 @@ function removeRegister(nameUser: string){
   const db = getDataBase();
   const removeUser = db.find((user) => new RegExp(nameUser, 'i').test(user.nameUser));
 
-  try {
-    const index = db.indexOf(removeUser);
-    db.splice(index, 1);
-    saveData(db);
-  } catch (e){
+  if (!removeUser){
     return { message: 'User not removed!' };
   }
+
+  const index = db.indexOf(removeUser);
+  db.splice(index, 1);
+  saveData(db);
 
   return { message: 'User removed with success!' };
 }
@@ -93,20 +94,25 @@ function ConsultBirthdayMonth(month: number) {
   return listUsersMonth;
 }
 // Consultar aniversariantes pela letra inicial do nome.
-function ConsultBirthdayNamesLetter(letter){}
+// function ConsultBirthdayNamesLetter(letter){}
 // Mostrar toda a agenda ordenada pelo nome.
-function showUsersName(order: string){
+function showUsersName(){
   const db = getDataBase();
 
-  order === 'month'
-    ? db.sort((a, b) => {
-      const i = a.nameUser < b.nameUser ? -1 : 1;
-      return i;
-    }) : { message: 'Name not specified' };
-  return order;
+  return db.sort((a, b) => {
+    const i = a.nameUser < b.nameUser ? -1 : 1;
+    return i;
+  });
 }
 // Mostrar toda a agenda ordenada por mês.
-function showUsersMonth(order){}
+function showUsersMonth(){
+  const db = getDataBase();
+
+  return db.sort((a, b) => {
+    const i = a.month - b.month;
+    return i;
+  });
+}
 
 export = {
   addRegister,
@@ -114,7 +120,6 @@ export = {
   alteringRecords,
   ConsultDateBirthday,
   ConsultBirthdayMonth,
-  ConsultBirthdayNamesLetter,
   showUsersName,
   showUsersMonth,
 }

@@ -2,7 +2,7 @@
     "openapi": "1.0.0",
     "info": {
       "title": "API REST - Node.Js ",
-      "description": "",
+      "description": "API desenvolvida em TypeScripts durante atividade de Tec. de Integração de Sistemas na Universidade de Fortaleza. ",
       "version": "1.0.0",
       "contact": {
         "name": "Emanuelle Neves",
@@ -62,7 +62,7 @@
           }
         }
       },
-      "/register": {
+      "/register/{nameUser}/{month}/{day}": {
         "post": {
           "summary": "Registrar Usuários",
           "description": "registrar novos usuários",
@@ -376,7 +376,7 @@
           "type": "object",
           "properties": {
             "id": {
-              "type": "integer"
+              "type": "string"
             },
             "name": {
               "type": "string"
@@ -407,24 +407,6 @@
             "name": "Maria Eduarda",
             "month": 4,
             "day": 2
-          }
-        }
-      },
-      "requestBodies": {
-        "UserNotID": {
-          "description": "Objeto JSON contendo dados de um usuário",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UserNotID"
-              },
-              "examples": {
-                "User": {
-                  "$ref": "#/components/examples/UserNotID"
-                }
-              }
-            }
           }
         }
       }
