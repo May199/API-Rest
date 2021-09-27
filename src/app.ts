@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 const express = require('express');
 const cors = require('cors');
 const consign = require('consign');
@@ -8,8 +9,8 @@ const DOC = require('./doc/swagger.json');
 const app = express();
 
 consign()
-    .include('controllers')
-    .into('app')
+  .include('controllers')
+  .into('app');
 
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));

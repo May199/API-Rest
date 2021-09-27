@@ -1,17 +1,16 @@
+/* eslint-disable linebreak-style */
 export type User = {
     id: string,
     nameUser: string,
     month: number,
     day: number
-  };
-  export type Birthday = {
+};
+export type Birthday = {
     nameUser: string,
     month: number,
     day: number
-  };
-  export type BirthdayUpdate = {
+};
+export type BirthdayUpdate = {
     month: number,
     day: number,
-  };
-  
-  
+};
