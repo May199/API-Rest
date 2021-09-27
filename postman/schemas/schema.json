@@ -107,7 +107,7 @@
               "schema": {
                 "type": "string"
               },
-              "example": "Jacson",
+              "example": "Example Name",
               "required": true
             }
           ],

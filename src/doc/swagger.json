@@ -69,6 +69,18 @@
           "tags": [
             "User"
           ],
+          "parameters":[
+            {
+              "in": "path",
+              "name": "name",
+              "description": "name do usuário a ser removido.",
+              "schema": {
+                "type": "string"
+              },
+              "example": "Example Name",
+              "required": true
+            }
+          ],
           "requestBody": {
             "$ref": "#/components/requestBodies/UserNotID"
           },
@@ -107,7 +119,7 @@
               "schema": {
                 "type": "string"
               },
-              "example": "Jacson",
+              "example": "Example Name",
               "required": true
             }
           ],

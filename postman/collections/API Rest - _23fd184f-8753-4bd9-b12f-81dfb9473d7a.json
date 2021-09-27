@@ -463,7 +463,7 @@
                         {
                             "id": "55476b27-837d-4b4b-944d-5abdf217074a",
                             "key": "name",
-                            "value": "Jacson",
+                            "value": "Example Name",
                             "description": "(Required) name do usuário a ser removido."
                         }
                     ]
