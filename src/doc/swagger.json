@@ -4,6 +4,7 @@
       "title": "API REST - Node.Js ",
       "description": "API desenvolvida em TypeScripts durante atividade de Téc. de Integração de Sistemas na Universidade de Fortaleza. ",
       "version": "1.0.0",
+      "repository": "https://github.com/May199/API-Rest",
       "contact": {
         "name": "Emanuelle Neves",
         "email": "emanuelle.neves@edu.unifor.br"
