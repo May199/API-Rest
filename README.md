@@ -22,6 +22,10 @@
     
     $ yarn dev / yarn start / npm dev / npm start --
 
+### Documentação
+
+> https://github.com/May199/API-Rest/blob/main/src/doc/swagger.json
+
 ### REFERÊNCIAS
 
 > https://swagger.io/docs/specification/basic-structure/
@@ -29,3 +33,5 @@
 > https://nodejs.org/api/fs.html
 
 > https://ezdevs.com.br/comecando-uma-api-rest-com-node-js/
+
+> https://www.youtube.com/watch?v=qemG0CWOx1I
