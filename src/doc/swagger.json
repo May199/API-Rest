@@ -55,6 +55,112 @@
                 }
             }
         }, 
+        "/consultDateBirthda/{month}/{day}": {
+          "get": {
+              "summary": "Busca de usuário a partir do mês e dia",
+              "description": "",
+              "parameters": [
+                {
+                  "name": "month",
+                  "in": "path",
+                  "description": "",
+                  "required": true
+                },
+                {
+                  "name": "day",
+                  "in": "path",
+                  "description": "",
+                  "required": true
+                }
+              ],
+              "responses": {
+                "200": {
+                  "description": "Confirmação – a ação foi concluída ou entendida;",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/User"
+                        }
+                      },
+                      "examples": {
+                        "users": {
+                          "$ref": "#/components/examples/Users"
+                        }
+                      }
+                    }
+                  }
+                },
+                "400": {
+                  "description": "Erro do cliente- indica que a solicitação não pode ser concluída ou contém a sintaxe incorreta;",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "message": {
+                            "type": "string",
+                            "example": "Informe uma data válida: exemplo 1 12"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+          }
+        },
+        "/consultBirthdayMonth/{month}": {
+          "get": {
+              "summary": "Busca usuário por mês",
+              "description": "",
+              "parameters": [
+                {
+                  "in": "path",
+                  "name": "month",
+                  "description": "",
+                  "required": true
+                }
+              ],
+              "responses": {
+                "200": {
+                  "description": "Confirmação – a ação foi concluída ou entendida;",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/User"
+                        }
+                      },
+                      "examples": {
+                        "users": {
+                          "$ref": "#/components/examples/Users"
+                        }
+                      }
+                    }
+                  }
+                },
+                "400": {
+                  "description": "Erro do cliente- indica que a solicitação não pode ser concluída ou contém a sintaxe incorreta;",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "message": {
+                            "type": "string",
+                            "example": "Informe um número válido de mês"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+          }
+        }, 
         "/register/{nameUser}/{month}/{day}": {
             "post": {
                 "summary": "Registrar Usuários",
@@ -220,113 +326,7 @@
                   }
                 }
             }
-        },
-        "/consultDateBirthda/{month}/{day}": {
-            "get": {
-                "summary": "Busca de usuário a partir do mês e dia",
-                "description": "",
-                "parameters": [
-                  {
-                    "name": "month",
-                    "in": "path",
-                    "description": "",
-                    "required": true
-                  },
-                  {
-                    "name": "day",
-                    "in": "path",
-                    "description": "",
-                    "required": true
-                  }
-                ],
-                "responses": {
-                  "200": {
-                    "description": "Confirmação – a ação foi concluída ou entendida;",
-                    "content": {
-                      "application/json": {
-                        "schema": {
-                          "type": "array",
-                          "items": {
-                            "$ref": "#/components/schemas/User"
-                          }
-                        },
-                        "examples": {
-                          "users": {
-                            "$ref": "#/components/examples/Users"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "400": {
-                    "description": "Erro do cliente- indica que a solicitação não pode ser concluída ou contém a sintaxe incorreta;",
-                    "content": {
-                      "application/json": {
-                        "schema": {
-                          "type": "object",
-                          "properties": {
-                            "message": {
-                              "type": "string",
-                              "example": "Informe uma data válida: exemplo 1 12"
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-            }
-        },
-        "/consultBirthdayMonth/{month}": {
-            "get": {
-                "summary": "Busca usuário por mês",
-                "description": "",
-                "parameters": [
-                  {
-                    "in": "path",
-                    "name": "month",
-                    "description": "",
-                    "required": true
-                  }
-                ],
-                "responses": {
-                  "200": {
-                    "description": "Confirmação – a ação foi concluída ou entendida;",
-                    "content": {
-                      "application/json": {
-                        "schema": {
-                          "type": "array",
-                          "items": {
-                            "$ref": "#/components/schemas/User"
-                          }
-                        },
-                        "examples": {
-                          "users": {
-                            "$ref": "#/components/examples/Users"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "400": {
-                    "description": "Erro do cliente- indica que a solicitação não pode ser concluída ou contém a sintaxe incorreta;",
-                    "content": {
-                      "application/json": {
-                        "schema": {
-                          "type": "object",
-                          "properties": {
-                            "message": {
-                              "type": "string",
-                              "example": "Informe um número válido de mês"
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-            }
-        }  
+        }
     },
     "components": {
         "schemas": {
