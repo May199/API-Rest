@@ -36,7 +36,6 @@
       "no-empty-function":"off",
       "object-curly-newline":"off",
       "import/extensions": "off",
-      "@TypeScript-eslint/no-explicit-any": "off",
       "indent":["error", 2]
     }
 }

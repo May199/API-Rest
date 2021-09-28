@@ -114,7 +114,7 @@ function showUsersMonth(){
   });
 }
 
-export = {
+module.exports = {
   addRegister,
   removeRegister,
   alteringRecords,
@@ -122,4 +122,4 @@ export = {
   ConsultBirthdayMonth,
   showUsersName,
   showUsersMonth,
-}
+};
