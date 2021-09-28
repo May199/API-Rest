@@ -1,8 +1,8 @@
 {
-    "openapi": "1.0.0",
+    "openapi": "3.0.n",
     "info": {
       "title": "API REST - Node.Js ",
-      "description": "API desenvolvida em TypeScripts durante atividade de Tec. de Integração de Sistemas na Universidade de Fortaleza. ",
+      "description": "API desenvolvida em TypeScripts durante atividade de Téc. de Integração de Sistemas na Universidade de Fortaleza. ",
       "version": "1.0.0",
       "contact": {
         "name": "Emanuelle Neves",
@@ -10,405 +10,382 @@
       }
     },
     "servers": [
-      {
-        "url": "",
-        "description": ""
-      },
-      {
-        "url": "http://localhost:3001/",
-        "description": "URL localhost."
-      }
+        {
+          "url": "http://localhost:3001/",
+          "description": "URL localhost."
+        }
     ],
-    "paths": {
-      "/": {
-        "get": {
-          "summary": "",
-          "description": "rota primária",
-          "tags": [
-            "user"
-          ],
-          "parameters": [
-            {
-              "name": "order",
-              "in": "query",
-              "description": "",
-              "required": false
+    "paths":{
+        "/": {
+            "get": {
+                "summary": "rota primária",
+                "description": "rota principal onde podemos ver as lista de usuários ordenadas pelo mês e nome.",
+                "parameters": [
+                  {
+                    "name": "order",
+                    "in": "query",
+                    "description": "",
+                    "required": false
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "Confirmação – a ação foi concluída ou entendida;",
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "object",
+                          "properties": {
+                            "users": {
+                              "type": "array",
+                              "items": {
+                                "$ref": "#/components/schemas/user"
+                              }
+                            }
+                          }
+                        },
+                        "examples": {
+                          "users": {
+                            "$ref": "#/components/examples/users"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
             }
-          ],
-          "responses": {
-            "200": {
-              "description": "",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "users": {
-                        "type": "array",
-                        "items": {
-                          "$ref": "#/components/schemas/user"
+        }, 
+        "/register/{nameUser}/{month}/{day}": {
+            "post": {
+                "summary": "Registrar Usuários",
+                "description": "registrar novos usuários",
+                "parameters":[
+                  {
+                    "in": "path",
+                    "name": "name",
+                    "description": "nome do usuário a ser registrado.",
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Example Name",
+                    "required": true
+                  }
+                ],
+                "requestBody": {
+                  "$ref": "#/components/requestBodies/UserNotID"
+                },
+                "responses": {
+                  "201": {
+                    "description": "code para sucesso no registro - A informação foi criada. ",
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "object",
+                          "properties": {
+                            "message": {
+                              "type": "string",
+                              "example": "User registered with success!"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+            }
+        },
+        "/removeRegister/{nameUser}": {
+            "delete": {
+                "summary": "Remover Usuário",
+                "description": "Remover usuários pelo nome",
+                "parameters": [
+                  {
+                    "in": "path",
+                    "name": "nameUser",
+                    "description": "nome do usuário a ser removido.",
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Example Name",
+                    "required": true
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "Confirmação – a ação foi concluída ou entendida;",
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "object",
+                          "properties": {
+                            "message": {
+                              "type": "string",
+                              "example": "User removed"
+                            }
+                          }
                         }
                       }
                     }
                   },
-                  "examples": {
-                    "users": {
-                      "$ref": "#/components/examples/users"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "/register/{nameUser}/{month}/{day}": {
-        "post": {
-          "summary": "Registrar Usuários",
-          "description": "registrar novos usuários",
-          "tags": [
-            "User"
-          ],
-          "parameters":[
-            {
-              "in": "path",
-              "name": "name",
-              "description": "nome do usuário a ser removido.",
-              "schema": {
-                "type": "string"
-              },
-              "example": "Example Name",
-              "required": true
-            }
-          ],
-          "requestBody": {
-            "$ref": "#/components/requestBodies/UserNotID"
-          },
-          "responses": {
-            "201": {
-              "description": "code para sucesso no registro",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "message": {
-                        "type": "string",
-                        "example": "User registered with success!"
+                  "400": {
+                    "description": "Erro do cliente- indica que a solicitação não pode ser concluída ou contém a sintaxe incorreta;",
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "object",
+                          "properties": {
+                            "message": {
+                              "type": "string",
+                              "example": "Unable to remove user"
+                            }
+                          }
+                        }
                       }
                     }
                   }
                 }
-              }
             }
-          }
-        }
-      },
-      "/removeRegister/{nameUser}": {
-        "delete": {
-          "summary": "Remover Usuário",
-          "description": "Remover usuários pelo nome",
-          "tags": [
-            "User"
-          ],
-          "parameters": [
-            {
-              "in": "path",
-              "name": "name",
-              "description": "nome do usuário a ser removido.",
-              "schema": {
-                "type": "string"
-              },
-              "example": "Example Name",
-              "required": true
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "message": {
-                        "type": "string",
-                        "example": ""
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "400": {
-              "description": "",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "message": {
-                        "type": "string",
-                        "example": ""
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "/alteringRecords/{nameUser}": {
-        "put": {
-          "summary": "Alterar Dia e Mes do usuário",
-          "description": "alterar dados dos aniversariantes por nome",
-          "tags": [
-            "User"
-          ],
-          "parameters": [
-            {
-              "in": "path",
-              "name": "name",
-              "description": "nome do usuário a ser alterado.",
-              "schema": {
-                "type": "object"
-              },
-              "example": "User Example",
-              "required": true
-            }
-          ],
-          "requestBody": {
-            "required": true,
-            "summary": "Dia e Mes a serem alterados.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "day": {
-                      "type": "integer"
+        },
+        "/alteringRecords/{nameUser}": {
+            "put": {
+                "summary": "Alterar Dia e Mes do usuário",
+                "description": "alterar dados dos aniversariantes por nome",
+                "parameters": [
+                  {
+                    "in": "path",
+                    "name": "name",
+                    "description": "nome do usuário a ser alterado.",
+                    "schema": {
+                      "type": "object"
                     },
-                    "month": {
-                      "type": "integer"
+                    "example": "User Example",
+                    "required": true
+                  }
+                ],
+                "requestBody": {
+                  "required": true,
+                  "summary": "Dia e Mes a serem alterados.",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "day": {
+                            "type": "integer"
+                          },
+                          "month": {
+                            "type": "integer"
+                          }
+                        }
+                      },
+                      "example": {
+                        "day": 8,
+                        "month": 5
+                      }
                     }
                   }
                 },
-                "example": {
-                  "day": 8,
-                  "month": 5
-                }
-              }
-            }
-          },
-          "responses": {
-            "200": {
-              "description": "Um objeto com a mensagem de sucesso.",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "message": {
-                        "type": "string",
-                        "example": "Usuário alterado!"
+                "responses": {
+                  "200": {
+                    "description": "Confirmação – a ação foi concluída ou entendida;",
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "object",
+                          "properties": {
+                            "message": {
+                              "type": "string",
+                              "example": "Usuário alterado!"
+                            }
+                          }
+                        }
                       }
-                    }
-                  }
-                }
-              }
-            },
-            "400": {
-              "description": "Um objeto com a mensagem de erro!",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "message": {
-                        "type": "string",
-                        "example": "Usuário não alterado!"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      
-      "/consultDateBirthda/{month}/{day}": {
-        "get": {
-          "summary": "Busca de usuário a partir do mes e dia",
-          "description": "",
-          "tags": [
-            "User"
-          ],
-          "parameters": [
-            {
-              "name": "month",
-              "in": "path",
-              "description": "",
-              "required": true
-            },
-            {
-              "name": "day",
-              "in": "path",
-              "description": "",
-              "required": true
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "Usuários encontrados no banco de dados",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/User"
                     }
                   },
-                  "examples": {
-                    "users": {
-                      "$ref": "#/components/examples/Users"
-                    }
-                  }
-                }
-              }
-            },
-            "400": {
-              "description": "Data no formato errado!",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "message": {
-                        "type": "string",
-                        "example": "90/12"
+                  "400": {
+                    "description": "Erro do cliente- indica que a solicitação não pode ser concluída ou contém a sintaxe incorreta;",
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "object",
+                          "properties": {
+                            "message": {
+                              "type": "string",
+                              "example": "Usuário não alterado!"
+                            }
+                          }
+                        }
                       }
                     }
                   }
                 }
-              }
             }
-          }
-        }
-      },
-      "/consultBirthdayMonth/{month}": {
-        "get": {
-          "summary": "Busca users por mes",
-          "description": "",
-          "tags": [
-            "User"
-          ],
-          "parameters": [
-            {
-              "in": "path",
-              "name": "month",
-              "description": "",
-              "required": true
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "users encontrados no banco de dados.",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/User"
+        },
+        "/consultDateBirthda/{month}/{day}": {
+            "get": {
+                "summary": "Busca de usuário a partir do mês e dia",
+                "description": "",
+                "parameters": [
+                  {
+                    "name": "month",
+                    "in": "path",
+                    "description": "",
+                    "required": true
+                  },
+                  {
+                    "name": "day",
+                    "in": "path",
+                    "description": "",
+                    "required": true
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "Confirmação – a ação foi concluída ou entendida;",
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/User"
+                          }
+                        },
+                        "examples": {
+                          "users": {
+                            "$ref": "#/components/examples/Users"
+                          }
+                        }
+                      }
                     }
                   },
-                  "examples": {
-                    "users": {
-                      "$ref": "#/components/examples/Users"
-                    }
-                  }
-                }
-              }
-            },
-            "400": {
-              "description": "Mês em formato errado",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "message": {
-                        "type": "string",
-                        "example": "13"
+                  "400": {
+                    "description": "Erro do cliente- indica que a solicitação não pode ser concluída ou contém a sintaxe incorreta;",
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "object",
+                          "properties": {
+                            "message": {
+                              "type": "string",
+                              "example": "Informe uma data válida: exemplo 1 12"
+                            }
+                          }
+                        }
                       }
                     }
                   }
                 }
-              }
             }
-          }
-        }
-      }
+        },
+        "/consultBirthdayMonth/{month}": {
+            "get": {
+                "summary": "Busca usuário por mês",
+                "description": "",
+                "parameters": [
+                  {
+                    "in": "path",
+                    "name": "month",
+                    "description": "",
+                    "required": true
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "Confirmação – a ação foi concluída ou entendida;",
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/User"
+                          }
+                        },
+                        "examples": {
+                          "users": {
+                            "$ref": "#/components/examples/Users"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "400": {
+                    "description": "Erro do cliente- indica que a solicitação não pode ser concluída ou contém a sintaxe incorreta;",
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "object",
+                          "properties": {
+                            "message": {
+                              "type": "string",
+                              "example": "Informe um número válido de mês"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+            }
+        }  
     },
     "components": {
-      "schemas": {
-        "UserNotID": {
-          "type": "object",
-          "properties": {
-            "name": {
-              "type": "string"
+        "schemas": {
+          "UserNotID": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "month": {
+                "type": "integer"
+              },
+              "dia": {
+                "type": "integer"
+              }
             },
-            "month": {
-              "type": "integer"
-            },
-            "dia": {
-              "type": "integer"
+            "required": [
+              "name",
+              "month",
+              "day"
+            ]
+          },
+          "User": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "month": {
+                "type": "integer"
+              },
+              "day": {
+                "type": "integer"
+              }
+            }
+          }
+        },
+        "examples": {
+          "UserNotID": {
+            "summary": "Examples Users",
+            "value": {
+              "id": "lv6w0azlk12",
+              "name": "Emanuelle Neves",
+              "month": 7,
+              "day": 19
             }
           },
-          "required": [
-            "name",
-            "month",
-            "day"
-          ]
-        },
-        "User": {
-          "type": "object",
-          "properties": {
-            "id": {
-              "type": "string"
-            },
-            "name": {
-              "type": "string"
-            },
-            "month": {
-              "type": "integer"
-            },
-            "day": {
-              "type": "integer"
+          "User": {
+            "summary": "Examples Users",
+            "value": {
+              "id": "lv6w123lkyq",
+              "name": "Maria Eduarda",
+              "month": 4,
+              "day": 2
             }
           }
         }
-      },
-      "examples": {
-        "UserNotID": {
-          "summary": "Examples Users",
-          "value": {
-            "id": "lv6w0azlk12",
-            "name": "Emanuelle Neves",
-            "month": 7,
-            "day": 19
-          }
-        },
-        "User": {
-          "summary": "Examples Users",
-          "value": {
-            "id": "lv6w123lkyq",
-            "name": "Maria Eduarda",
-            "month": 4,
-            "day": 2
-          }
-        }
-      }
     }
-  }
+}

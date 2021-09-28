@@ -16,6 +16,6 @@ app.use(express.json());
 app.use(routes);
 
 // DOC da documentação do projeto utilizando o swagger
-app.use('/doc', swagger.serve, swagger.setup(DOC));
+app.use('/swagger', swagger.serve, swagger.setup(DOC));
 
 export default app;
