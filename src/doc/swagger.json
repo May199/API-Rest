@@ -331,25 +331,6 @@
     },
     "components": {
         "schemas": {
-          "UserNotID": {
-            "type": "object",
-            "properties": {
-              "name": {
-                "type": "string"
-              },
-              "month": {
-                "type": "integer"
-              },
-              "dia": {
-                "type": "integer"
-              }
-            },
-            "required": [
-              "name",
-              "month",
-              "day"
-            ]
-          },
           "User": {
             "type": "object",
             "properties": {
@@ -369,15 +350,6 @@
           }
         },
         "examples": {
-          "UserNotID": {
-            "summary": "Examples Users",
-            "value": {
-              "id": "lv6w0azlk12",
-              "name": "Emanuelle Neves",
-              "month": 7,
-              "day": 19
-            }
-          },
           "User": {
             "summary": "Examples Users",
             "value": {
